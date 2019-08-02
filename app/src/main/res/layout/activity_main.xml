@@ -7,23 +7,16 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <com.necer.nrefreshlayout.NRefreshLayout
+    <com.necer.nrefreshlayout.NSwipeRefreshLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
-            android:background="#cccccc"
-            android:text="test"/>
+            android:background="#cccccc" />
 
-
-        <!--<android.support.v7.widget.RecyclerView-->
-            <!--android:id="@+id/recyclerView"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:background="#cccccc" />-->
-
-    </com.necer.nrefreshlayout.NRefreshLayout>
+    </com.necer.nrefreshlayout.NSwipeRefreshLayout>
 </LinearLayout>

@@ -15,6 +15,7 @@ import android.widget.TextView;
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
 
     private Context context;
+    private int count = 50;
 
     public RecyclerViewAdapter(Context context) {
         this.context = context;
@@ -33,7 +34,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public int getItemCount() {
-        return 50;
+        return count;
+    }
+
+    public void add() {
+        count = count + 50;
+        notifyDataSetChanged();
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {

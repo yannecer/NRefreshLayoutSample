@@ -1,5 +1,6 @@
 package com.necer.nrefreshlayoutsample;
 
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -7,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
 
 import com.necer.nrefreshlayout.MyLog;
+import com.necer.nrefreshlayout.NSwipeRefreshLayout;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         final RecyclerView recyclerView = findViewById(R.id.recyclerView);
 //
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(this);
+        final RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(this);
         recyclerView.setAdapter(recyclerViewAdapter);
         recyclerView.post(new Runnable() {
             @Override
@@ -32,6 +34,25 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+        final NSwipeRefreshLayout swipeRefreshLayout = findViewById(R.id.nSwipeRefreshLayout);
+        swipeRefreshLayout.setOnLoadMoreListener(new NSwipeRefreshLayout.OnLoadMoreListener() {
+
+            @Override
+            public void onLoadMore() {
+
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        recyclerViewAdapter.add();
+                        swipeRefreshLayout.loadMoreFinish();
+                    }
+                }, 1000);
+
+
+            }
+        });
 
 //
 //        final TextView tv_ = findViewById(R.id.tv_);

@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.List;
+
 
 /**
  * Created by necer on 2017/6/7.
@@ -15,10 +17,13 @@ import android.widget.TextView;
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
 
     private Context context;
-    private int count = 50;
+    private List<String> strings;
 
-    public RecyclerViewAdapter(Context context) {
+
+    public RecyclerViewAdapter(Context context, List<String> list) {
+
         this.context = context;
+        strings = list;
     }
 
     @Override
@@ -29,18 +34,21 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         TextView textView = holder.textView;
-        textView.setText("RecyclerView ----- " + position);
+        textView.setText("RecyclerView ----- " + strings.get(position)+":::"+position);
     }
 
     @Override
     public int getItemCount() {
-        return count;
+        return strings.size();
     }
 
-    public void add() {
-        count = count + 50;
-        notifyDataSetChanged();
-    }
+
+
+
+//    public void remove() {
+//        count = 49;
+//        notifyItemRemoved(50);
+//    }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
         TextView textView;
